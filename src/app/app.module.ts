@@ -3,24 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StudentComponent } from './student/student.component';
-import { MarkComponent } from './mark/mark.component';
-import { SubjectComponent } from './subject/subject.component';
-import { TeacherComponent } from './teacher/teacher.component';
-import { SchoolClassComponent } from './school-class/school-class.component';
+import { StudentsComponent } from './students/students.component';
+import { MarksComponent } from './marks/marks.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { TeachersComponent } from './teachers/teachers.component';
+import { SchoolClassesComponent } from './school-classes/school-classes.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { BodyComponent } from './body/body.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentComponent,
-    MarkComponent,
-    SubjectComponent,
-    TeacherComponent,
-    SchoolClassComponent,
+    StudentsComponent,
+    MarksComponent,
+    SubjectsComponent,
+    TeachersComponent,
+    SchoolClassesComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
