@@ -11,6 +11,12 @@ import { SchoolClassesComponent } from './school-classes/school-classes.componen
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { MarkComponent } from './marks/mark/mark.component';
+import { SchoolClassComponent } from './school-classes/school-class/school-class.component';
+import { StudentComponent } from './students/student/student.component';
+import { SubjectComponent } from './subjects/subject/subject.component';
+import { TeacherComponent } from './teachers/teacher/teacher.component';
+import { MarkListComponent } from './marks/mark-list/mark-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,13 @@ import { HomeComponent } from './home/home.component';
     SchoolClassesComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    MarkComponent,
+    SchoolClassComponent,
+    StudentComponent,
+    SubjectComponent,
+    TeacherComponent,
+    MarkListComponent
   ],
   imports: [
     BrowserModule,
