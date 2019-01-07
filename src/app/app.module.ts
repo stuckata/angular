@@ -10,7 +10,7 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { SchoolClassesComponent } from './school-classes/school-classes.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { BodyComponent } from './body/body.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { BodyComponent } from './body/body.component';
     SchoolClassesComponent,
     HeaderComponent,
     FooterComponent,
-    BodyComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
