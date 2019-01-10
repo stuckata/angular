@@ -18,4 +18,8 @@ export class SubjectsComponent implements OnInit {
     this.subjects = this.subjectService.getSubjects();
     this.subjectService.subjectsChanged.subscribe((subjects: Subject[]) => this.subjects = subjects);
   }
+
+  onRemoveClick(subject: Subject) {
+    this.subjectService.removeSubject(subject);
+  }
 }

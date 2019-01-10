@@ -13,8 +13,8 @@
       <th scope="row">{{ subject.id }}</th>
       <td>{{ subject.name }}</td>
       <td>
-        <a class="text-dark" [routerLink]="['/subject']" style="margin-right: 30px">Edit</a>
-        <a class="text-dark" href="">Delete</a>
+        <a class="text-dark" [routerLink]="['/subject']" (click)="onEditClick(subject)" style="margin-right: 30px">Edit</a>
+        <a class="text-dark" [routerLink]="['/subjects']" (click)="onRemoveClick(subject)">Remove</a>
       </td>
     </tr>
   </tbody>
