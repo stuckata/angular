@@ -2,24 +2,18 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Class Identifier</th>
-      <th scope="col">Options</th>
+      <th scope="col">Subject</th>
+      <th scope="col">
+        <a class="text-dark" [routerLink]="['/subject']" style="margin-right: 30px">Add Subject</a>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>10 D</td>
+    <tr *ngFor="let subject of subjects">
+      <th scope="row">{{ subject.id }}</th>
+      <td>{{ subject.name }}</td>
       <td>
-        <a class="text-dark" href="" style="margin-right: 30px">Edit</a>
-        <a class="text-dark" href="">Delete</a>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>12 G</td>
-      <td>
-        <a class="text-dark" href="" style="margin-right: 30px">Edit</a>
+        <a class="text-dark" [routerLink]="['/subject']" style="margin-right: 30px">Edit</a>
         <a class="text-dark" href="">Delete</a>
       </td>
     </tr>

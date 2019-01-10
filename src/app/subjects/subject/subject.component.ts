@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { SubjectService } from 'src/app/services/subject.service';
+import { Subject } from '../subject.model';
 
 @Component({
   selector: 'app-subject',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private subjectService: SubjectService) { }
 
   ngOnInit() {
   }
 
+  onCancelClick() {
+    this.router.navigate(['/subjects']);
+  }
+
+  onAddNewSubjectClick(id: string, name: string) {
+    let subject = new Subject(parseInt(id), name);
+    this.subjectService.addSubject(subject);
+    this.router.navigate(['/subjects']);
+  }
 }
