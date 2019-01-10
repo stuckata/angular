@@ -1,7 +1,12 @@
 <div class="container-fluid">
-  <app-school-classes></app-school-classes>
-  <app-students></app-students>
-  <app-teachers></app-teachers>
-  <app-subjects></app-subjects>
-  <app-marks></app-marks>
+  <div class="card mt-3">
+    <div class="card-header">
+      Subjects
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Subjects at the School</h5>
+      <p class="card-text">You could find the whole information about a cirtain Subject here.</p>
+      <a [routerLink]="['/subjects']" class="btn btn-primary">Go to Subjects</a>
+    </div>
+  </div>
 </div>

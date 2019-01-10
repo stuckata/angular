@@ -7,9 +7,6 @@ import { SchoolClass } from './school-class.model';
   styleUrls: ['./school-classes.component.css']
 })
 export class SchoolClassesComponent implements OnInit {
-  classes: SchoolClass[] = [
-
-  ];
 
   constructor() { }
 
