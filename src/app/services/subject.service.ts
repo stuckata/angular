@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 import { Subject } from '../subjects/subject.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +22,22 @@ export class SubjectService {
     return this.subjects.slice();
   }
 
+  getSubjectById(id: number) {
+    let tmp = this.getSubjects().filter(x => x.id === id);
+    if (tmp.length > 0) {
+      return tmp[0];
+    }
+  }
+
   addSubject(subject: Subject) {
+    // subject.id = Math.floor(Math.random() * 1000) + 1;
+    subject.id = this.subjects.length + 1;
     this.subjects.push(subject);
     this.subjectsChanged.emit(this.getSubjects());
   }
 
   editSubject(subject: Subject) {
-
+    this.subjectsChanged.emit(this.getSubjects());
   }
 
   removeSubject(subject: Subject) {

@@ -1,9 +1,10 @@
+<h3 *ngIf="subject.id === 0">You can add a new Subject bellow.</h3>
+<h3 *ngIf="subject.id !== 0">You can edit the Subject bellow.</h3>
 <div class="form-group">
   <label for="newSubjectId">Id</label>
-  <input type="number" class="form-control" id="newSubjectId" placeholder="Subject Id" #subjectIdInput>
-  <label for="newSubjectName">New Subject Name</label>
-  <input type="text" class="form-control" id="newSubjectName" placeholder="Subject Name" #subjectNameInput>
+  <input type="number" class="form-control" id="newSubjectId" [(ngModel)]="subject.id" disabled>
+  <label for="newSubjectName">Subject Name</label>
+  <input type="text" class="form-control" id="newSubjectName" [(ngModel)]="subject.name">
 </div>
 <button class="btn btn-secondary" (click)="onCancelClick()" style="margin: 10px">Cancel</button>
-<button class="btn btn-primary" (click)="onAddNewSubjectClick(subjectIdInput.value, subjectNameInput.value)" style="margin: 10px">Add
-  New Subject</button>
+<button class="btn btn-primary" (click)="onSaveClick()" style="margin: 10px">{{ isEditMode() ? 'Edit' : 'Add' }}</button>

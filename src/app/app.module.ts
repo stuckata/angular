@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { StudentComponent } from './students/student/student.component';
 import { SubjectComponent } from './subjects/subject/subject.component';
 import { TeacherComponent } from './teachers/teacher/teacher.component';
 import { MarkListComponent } from './marks/mark-list/mark-list.component';
+import { SubjectEditComponent } from './subjects/subject-edit/subject-edit.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,13 @@ import { MarkListComponent } from './marks/mark-list/mark-list.component';
     StudentComponent,
     SubjectComponent,
     TeacherComponent,
-    MarkListComponent
+    MarkListComponent,
+    SubjectEditComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

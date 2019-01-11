@@ -8,7 +8,8 @@ import { SubjectComponent } from './subjects/subject/subject.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'subjects', component: SubjectsComponent },
-  { path: 'subject', component: SubjectComponent }
+  { path: 'subject', component: SubjectComponent },
+  { path: 'subject/:id', component: SubjectComponent }
 ];
 
 @NgModule({

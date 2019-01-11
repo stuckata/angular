@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from './subject.model';
+import { Router } from '@angular/router';
 
 import { SubjectService } from '../services/subject.service';
+import { Subject } from './subject.model';
 
 @Component({
   selector: 'app-subjects',
@@ -12,7 +13,7 @@ export class SubjectsComponent implements OnInit {
 
   subjects: Subject[];
 
-  constructor(private subjectService: SubjectService) { }
+  constructor(private subjectService: SubjectService, private router: Router) { }
 
   ngOnInit() {
     this.subjects = this.subjectService.getSubjects();
@@ -21,5 +22,10 @@ export class SubjectsComponent implements OnInit {
 
   onRemoveClick(subject: Subject) {
     this.subjectService.removeSubject(subject);
+  }
+
+
+  onEditClick(subject: Subject) {
+    this.router.navigate(['/subject', subject.id]);
   }
 }
