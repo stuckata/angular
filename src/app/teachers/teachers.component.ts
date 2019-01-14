@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Teacher } from './teacher.model';
-import { TeacherService } from '../services/teacher.service';
 import { Subject } from '../subjects/subject.model';
+import { TeacherService } from '../services/teacher.service';
 
 @Component({
   selector: 'app-teachers',
@@ -12,11 +14,19 @@ export class TeachersComponent implements OnInit {
 
   teachers: Teacher[];
 
-  constructor(private teachersService: TeacherService) { }
+  constructor(private teachersService: TeacherService, private router: Router) { }
 
   ngOnInit() {
     this.teachers = this.teachersService.getTeachers();
     this.teachersService.teachersChanged.subscribe((teachers: Teacher[]) => this.teachers = teachers);
+  }
+
+  onRemoveClick(teacher: Teacher) {
+    this.teachersService.removeTeacher(teacher);
+  }
+
+  onEditClick(teacher: Teacher) {
+    this.router.navigate(['/teacher', teacher.id]);
   }
 
   subjectsToString(subjects: Subject[]): string {

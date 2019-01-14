@@ -1,3 +1,17 @@
-<p>
-  teacher works!
-</p>
+<h3>You can {{ isEditMode() ? 'edit' : 'add' }} the Teacher bellow.</h3>
+<div class="form-group">
+  <label for="newTeacherId">Id</label>
+  <input type="number" class="form-control" id="newTeacherId" [(ngModel)]="teacher.id" disabled>
+  <label for="newTeacherName">Teacher Name</label>
+  <input type="text" class="form-control" id="newTeacherName" [(ngModel)]="teacher.name">
+  <hr>
+  <h6>Choose Subjects for the Teacher.</h6>
+  <div class="form-check" *ngFor="let subject of selectionSubjects">
+    <input class="form-check-input" type="checkbox" [(ngModel)]="subject.checked">
+    <label class="form-check-label">
+      {{ subject.subject.name }}
+    </label>
+  </div>
+</div>
+<button class="btn btn-secondary" (click)="onCancelClick()" style="margin: 10px">Cancel</button>
+<button class="btn btn-primary" (click)="onSaveClick()" style="margin: 10px">{{ isEditMode() ? 'Edit' : 'Add' }}</button>

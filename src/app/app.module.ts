@@ -18,7 +18,6 @@ import { StudentComponent } from './students/student/student.component';
 import { SubjectComponent } from './subjects/subject/subject.component';
 import { TeacherComponent } from './teachers/teacher/teacher.component';
 import { MarkListComponent } from './marks/mark-list/mark-list.component';
-import { SubjectEditComponent } from './subjects/subject-edit/subject-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { SubjectEditComponent } from './subjects/subject-edit/subject-edit.compo
     StudentComponent,
     SubjectComponent,
     TeacherComponent,
-    MarkListComponent,
-    SubjectEditComponent
+    MarkListComponent
   ],
   imports: [
     BrowserModule,

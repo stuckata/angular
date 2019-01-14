@@ -22,7 +22,7 @@ export class SubjectService {
   }
 
   getSubjectById(id: number) {
-    let tmp = this.getSubjects().filter(x => x.id === id);
+    let tmp = this.getSubjects().filter(subject => subject.id === id);
     if (tmp.length > 0) {
       return tmp[0];
     }
