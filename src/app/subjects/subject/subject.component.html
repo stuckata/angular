@@ -1,5 +1,4 @@
-<h3 *ngIf="subject.id === 0">You can add a new Subject bellow.</h3>
-<h3 *ngIf="subject.id !== 0">You can edit the Subject bellow.</h3>
+<h3>You can {{ isEditMode() ? 'edit' : 'add' }} the Subject bellow.</h3>
 <div class="form-group">
   <label for="newSubjectId">Id</label>
   <input type="number" class="form-control" id="newSubjectId" [(ngModel)]="subject.id" disabled>

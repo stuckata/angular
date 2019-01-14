@@ -24,7 +24,6 @@ export class SubjectsComponent implements OnInit {
     this.subjectService.removeSubject(subject);
   }
 
-
   onEditClick(subject: Subject) {
     this.router.navigate(['/subject', subject.id]);
   }

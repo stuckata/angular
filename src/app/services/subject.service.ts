@@ -1,7 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 import { Subject } from '../subjects/subject.model';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
