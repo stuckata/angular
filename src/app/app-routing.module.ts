@@ -6,6 +6,8 @@ import { SubjectsComponent } from './subjects/subjects.component';
 import { SubjectComponent } from './subjects/subject/subject.component';
 import { TeachersComponent } from './teachers/teachers.component';
 import { TeacherComponent } from './teachers/teacher/teacher.component';
+import { SchoolClassesComponent } from './school-classes/school-classes.component';
+import { SchoolClassComponent } from './school-classes/school-class/school-class.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +17,9 @@ const routes: Routes = [
   { path: 'teachers', component: TeachersComponent },
   { path: 'teacher/new', component: TeacherComponent },
   { path: 'teacher/:id', component: TeacherComponent },
+  { path: 'classes', component: SchoolClassesComponent },
+  { path: 'class/new', component: SchoolClassComponent },
+  { path: 'class/:id', component: SchoolClassComponent },
   { path: '**', redirectTo: '/' }
 ];
 

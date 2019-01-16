@@ -5,12 +5,12 @@ import { Teacher } from '../teachers/teacher.model';
 export class Mark {
     public id: number;
     public value: number;
-    public date: Date;
+    public date: string;
     public subject: Subject;
     public teacher: Teacher;
     public student: Student;
 
-    constructor(id: number, value: number, date: Date, subject: Subject, teacher: Teacher, student: Student) {
+    constructor(id: number, value: number, date: string, subject: Subject, teacher: Teacher, student: Student) {
         this.id = id;
         this.value = value;
         this.date = date;

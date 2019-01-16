@@ -11,5 +11,4 @@ export class SchoolClassComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

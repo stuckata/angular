@@ -44,12 +44,8 @@ export class TeacherComponent implements OnInit {
     if (this.isEditMode()) {
       this.teacherService.editTeacher(this.teacher);
     } else {
-      console.log("Selection=", this.selectionSubjects);
       let filtered = (this.selectionSubjects.filter(el => el.checked === true));
-      console.log("Filtered=", filtered);
       let selected = filtered.map(el => el.subject);
-      console.log("Selected=", selected);
-
       this.teacherService.addTeacher(this.teacher, selected);
     }
     this.router.navigate(['/teachers']);
