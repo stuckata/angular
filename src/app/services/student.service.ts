@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 import { Student } from '../students/student.model';
 
@@ -6,6 +6,8 @@ import { Student } from '../students/student.model';
   providedIn: 'root'
 })
 export class StudentService {
+
+  studentsChanged = new EventEmitter<Student[]>();
 
   private students: Student[] = [
     new Student(1, 'Gancho Mancho', []),

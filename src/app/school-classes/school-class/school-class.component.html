@@ -1,3 +1,16 @@
-<p>
-  school-class works!
-</p>
+<h3>{{ schoolClass.name }} Class</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Student Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of schoolClass.students">
+      <th>{{ student.id }}</th>
+      <td><a class="text-dark" (click)="onStudentNameClick(student)">{{ student.name }}</a></td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-secondary btn-block" [routerLink]="['/classes']">Back to Classes</button>

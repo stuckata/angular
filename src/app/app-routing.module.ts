@@ -8,6 +8,7 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { TeacherComponent } from './teachers/teacher/teacher.component';
 import { SchoolClassesComponent } from './school-classes/school-classes.component';
 import { SchoolClassComponent } from './school-classes/school-class/school-class.component';
+import { StudentComponent } from './students/student/student.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'classes', component: SchoolClassesComponent },
   { path: 'class/new', component: SchoolClassComponent },
   { path: 'class/:id', component: SchoolClassComponent },
+  { path: 'student', component: StudentComponent },
+  { path: 'student/:id', component: StudentComponent },
   { path: '**', redirectTo: '/' }
 ];
 

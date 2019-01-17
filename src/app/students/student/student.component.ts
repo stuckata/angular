@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Student } from '../student.model';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  @Input() student: Student;
+
+  constructor(private route: ActivatedRoute, private studentService: StudentService) { }
 
   ngOnInit() {
+    this.student = new Student(0, '', []);
+    if (this.route.snapshot) {
+      const id = +this.route.snapshot.params['id'];
+      if (id > 0) {
+        let tmp = this.studentService.getStudentById(id);
+        if (tmp) {
+          this.student = tmp;
+        }
+      }
+    }
   }
 
 }

@@ -20,7 +20,7 @@ export class SchoolClassesComponent implements OnInit {
     this.schoolClassService.classesChanged.subscribe((classes: SchoolClass[]) => this.classes = classes);
   }
 
-  onEditClick(schoolClass: SchoolClass) {
+  onClassDetailsClick(schoolClass: SchoolClass) {
     this.router.navigate(['/class', schoolClass.id]);
   }
 }
