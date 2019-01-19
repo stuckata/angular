@@ -1,3 +1,16 @@
+<!-- Class and Subject Dropdown Menu -->
+<div class="container-fluid">
+  <div class="btn-group">
+    <select (change)="onClassChange($event.target.value)" style="margin-right:10px">
+      <option value="0">-- Choose Class --</option>
+      <option *ngFor="let cl of classes" value={{cl.id}}>{{cl.name}}</option>
+    </select>
+    <select (change)="onSubjectChange($event.target.value)">
+      <option value="0">-- Choose Subject --</option>
+      <option *ngFor="let subject of subjects" value={{subject.id}}>{{subject.name}}</option>
+    </select>
+  </div>
+</div>
 <!-- Subjects -->
 <div class="container-fluid">
   <div class="card mt-3">

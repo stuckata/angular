@@ -9,7 +9,7 @@
   <tbody>
     <tr *ngFor="let student of schoolClass.students">
       <th>{{ student.id }}</th>
-      <td><a class="text-dark" (click)="onStudentNameClick(student)">{{ student.name }}</a></td>
+      <td><a class="text-dark" [routerLink]="" (click)="onStudentNameClick(student)">{{ student.name }}</a></td>
     </tr>
   </tbody>
 </table>
