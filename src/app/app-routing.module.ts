@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'classes', component: SchoolClassesComponent },
   { path: 'class/new', component: SchoolClassComponent },
   { path: 'class/:id', component: SchoolClassComponent },
+  { path: 'class/:classId/:subjectId', component: SchoolClassComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/:id', component: StudentComponent },
   { path: '**', redirectTo: '/' }

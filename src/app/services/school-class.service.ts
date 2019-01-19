@@ -11,13 +11,13 @@ export class SchoolClassService {
   classesChanged = new EventEmitter<SchoolClass[]>();
 
   private classes: SchoolClass[] = [
-    new SchoolClass(1, '10 D', [
+    new SchoolClass(1, '10d', [
       this.studentService.getStudentById(1), this.studentService.getStudentById(2), this.studentService.getStudentById(3)
     ], []),
-    new SchoolClass(2, '12 E', [
+    new SchoolClass(2, '12e', [
       this.studentService.getStudentById(4), this.studentService.getStudentById(5), this.studentService.getStudentById(6)
     ], []),
-    new SchoolClass(3, '8 A', [
+    new SchoolClass(3, '8a', [
       this.studentService.getStudentById(7), this.studentService.getStudentById(8), this.studentService.getStudentById(9)
     ], []),
   ];

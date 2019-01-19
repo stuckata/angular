@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SchoolClass } from '../school-class.model';
 import { SchoolClassService } from 'src/app/services/school-class.service';
 import { Student } from 'src/app/students/student.model';
+import { Subject } from 'src/app/subjects/subject.model';
+import { SubjectService } from 'src/app/services/subject.service';
 
 @Component({
   selector: 'app-school-class',
@@ -12,18 +14,32 @@ import { Student } from 'src/app/students/student.model';
 })
 export class SchoolClassComponent implements OnInit {
 
-  @Input() schoolClass: SchoolClass
+  @Input() schoolClass: SchoolClass;
+  @Input() subject: Subject;
 
-  constructor(private route: ActivatedRoute, private schoolClassService: SchoolClassService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private schoolClassService: SchoolClassService,
+    private router: Router,
+    private subjectService: SubjectService
+  ) { }
 
   ngOnInit() {
     this.schoolClass = new SchoolClass(0, '', [], []);
+    this.subject = new Subject(0, '');
     if (this.route.snapshot) {
-      const id = +this.route.snapshot.params['id'];
-      if (id > 0) {
-        let tmp = this.schoolClassService.getClassById(id);
+      const classId = +this.route.snapshot.params['classId'];
+      const subjectId = +this.route.snapshot.params['subjectId'];
+      if (classId > 0) {
+        let tmp = this.schoolClassService.getClassById(classId);
         if (tmp) {
           this.schoolClass = tmp;
+        }
+      }
+      if (subjectId > 0) {
+        let tmpSubject = this.subjectService.getSubjectById(subjectId);
+        if (tmpSubject) {
+          this.subject = tmpSubject;
         }
       }
     }

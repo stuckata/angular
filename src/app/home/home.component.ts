@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { SchoolClass } from '../school-classes/school-class.model';
 import { Subject } from '../subjects/subject.model';
@@ -14,10 +15,18 @@ export class HomeComponent implements OnInit {
 
   classes: SchoolClass[];
   subjects: Subject[];
+  classId: number = 0;
+  subjectId: number = 0;
+  showWarning: boolean;
 
-  constructor(private schoolClassService: SchoolClassService, private subjectService: SubjectService) { }
+  constructor(
+    private schoolClassService: SchoolClassService,
+    private subjectService: SubjectService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.showWarning = false;
     this.classes = this.schoolClassService.getClasses();
     this.schoolClassService.classesChanged.subscribe((classes: SchoolClass[]) => this.classes = classes);
     this.subjects = this.subjectService.getSubjects();
@@ -25,10 +34,18 @@ export class HomeComponent implements OnInit {
   }
 
   onClassChange(id: number) {
-    console.log('onClassChange => id: ' + id);
+    this.classId = id;
   }
 
   onSubjectChange(id: number) {
-    console.log('onSubjectChange => id: ' + id);
+    this.subjectId = id;
+  }
+
+  onChooseClassAndSubjectClick() {
+    if (this.classId > 0 && this.subjectId > 0) {
+      this.router.navigate(['/class', this.classId, this.subjectId]);
+    } else {
+      this.showWarning = true;
+    }
   }
 }

@@ -10,6 +10,11 @@
       <option *ngFor="let subject of subjects" value={{subject.id}}>{{subject.name}}</option>
     </select>
   </div>
+  <hr>
+  <div *ngIf=showWarning class="alert alert-danger" role="alert">
+    You should choose both Class and Subject!
+  </div>
+  <button class="btn btn-secondary" (click)="onChooseClassAndSubjectClick()">Go to Class on the chosen Subject</button>
 </div>
 <!-- Subjects -->
 <div class="container-fluid">
