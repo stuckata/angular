@@ -46,4 +46,8 @@ export class SchoolClassComponent implements OnInit {
   onStudentNameClick(student: Student) {
     this.router.navigate(['/student', student.id]);
   }
+
+  hasClassAndSubject() {
+    return (this.schoolClass.id > 0 && this.subject.id > 0);
+  }
 }
