@@ -27,7 +27,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.showWarning = false;
-    this.classes = this.schoolClassService.getClasses();
+    this.classes = [];
+    this.schoolClassService.getClasses().subscribe((data: SchoolClass[]) => {
+      this.classes = data;
+    });
     this.schoolClassService.classesChanged.subscribe((classes: SchoolClass[]) => this.classes = classes);
     this.subjects = this.subjectService.getSubjects();
     this.subjectService.subjectsChanged.subscribe((subjects: Subject[]) => this.subjects = subjects);

@@ -1,4 +1,7 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, ɵConsole } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 
 import { Student } from '../students/student.model';
 
@@ -8,29 +11,27 @@ import { Student } from '../students/student.model';
 export class StudentService {
 
   studentsChanged = new EventEmitter<Student[]>();
+  endpoint = 'http://localhost:8080/api/v1/';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
-  private students: Student[] = [
-    new Student(1, 'Gancho Mancho', []),
-    new Student(2, 'Petko Metko', []),
-    new Student(3, 'Pedya Chovek', []),
-    new Student(4, 'Hitar Petar', []),
-    new Student(5, 'Kumcho Valcho', []),
-    new Student(6, 'Zaio Baio', []),
-    new Student(7, 'Kuma Lisa', []),
-    new Student(8, 'Baba Meca', []),
-    new Student(9, 'Ejko Bejko', [])
-  ];
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  getStudents() {
-    return this.students.slice();
+  extractData(res: Response) {
+    let body = res;
+    return body || {};
   }
 
-  getStudentById(id: number) {
-    let tmp = this.getStudents().filter(student => student.id === id);
-    if (tmp.length > 0) {
-      return tmp[0];
-    }
+  getStudents(): Observable<any> {
+    return this.http.get(this.endpoint + 'students').pipe(
+      map(this.extractData));
+  }
+
+  getStudentById(id: number): Observable<any> {
+    return this.http.get(this.endpoint + 'students/' + id).pipe(
+      map(this.extractData));
   }
 }

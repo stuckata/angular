@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'teacher/:id', component: TeacherComponent },
   { path: 'classes', component: SchoolClassesComponent },
   { path: 'class/new', component: SchoolClassComponent },
-  { path: 'class/:id', component: SchoolClassComponent },
+  { path: 'class/:classId', component: SchoolClassComponent },
   { path: 'class/:classId/:subjectId', component: SchoolClassComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/:id', component: StudentComponent },

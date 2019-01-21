@@ -2,12 +2,12 @@ import { Mark } from '../marks/mark.model';
 
 export class Student {
     public id: number;
+    public no: number;
     public name: string;
-    public markbook: Mark[];
 
-    constructor(id: number, name: string, markbook: Mark[]) {
+    constructor(id: number, no: number, name: string) {
         this.id = id;
+        this.no = no;
         this.name = name;
-        this.markbook = markbook;
     }
 }

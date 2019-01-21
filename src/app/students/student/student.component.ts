@@ -16,11 +16,14 @@ export class StudentComponent implements OnInit {
   constructor(private route: ActivatedRoute, private studentService: StudentService) { }
 
   ngOnInit() {
-    this.student = new Student(0, '', []);
+    this.student = new Student(0, 0, '');
     if (this.route.snapshot) {
       const id = +this.route.snapshot.params['id'];
       if (id > 0) {
-        let tmp = this.studentService.getStudentById(id);
+        let tmp: Student;
+        this.studentService.getStudentById(id).subscribe((data: {}) => {
+          console.log(data);
+        });
         if (tmp) {
           this.student = tmp;
         }

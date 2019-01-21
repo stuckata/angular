@@ -25,17 +25,15 @@ export class SchoolClassComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.schoolClass = new SchoolClass(0, '', [], []);
+    this.schoolClass = new SchoolClass(0, '', []);
     this.subject = new Subject(0, '');
     if (this.route.snapshot) {
-      const classId = +this.route.snapshot.params['classId'];
-      const subjectId = +this.route.snapshot.params['subjectId'];
+      const classId: number = parseInt(this.route.snapshot.params['classId']);
       if (classId > 0) {
-        let tmp = this.schoolClassService.getClassById(classId);
-        if (tmp) {
-          this.schoolClass = tmp;
-        }
+        this.schoolClassService.getClassById(classId).subscribe((data: SchoolClass) => { this.schoolClass = data });
       }
+
+      const subjectId = +this.route.snapshot.params['subjectId'];
       if (subjectId > 0) {
         let tmpSubject = this.subjectService.getSubjectById(subjectId);
         if (tmpSubject) {

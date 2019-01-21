@@ -16,7 +16,7 @@ export class SchoolClassesComponent implements OnInit {
   constructor(private schoolClassService: SchoolClassService, private router: Router) { }
 
   ngOnInit() {
-    this.classes = this.schoolClassService.getClasses();
+    this.schoolClassService.getClasses().subscribe((data: SchoolClass[]) => { this.classes = data });
     this.schoolClassService.classesChanged.subscribe((classes: SchoolClass[]) => this.classes = classes);
   }
 

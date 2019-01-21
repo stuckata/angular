@@ -1,4 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { SchoolClass } from '../school-classes/school-class.model';
 import { StudentService } from './student.service';
@@ -8,30 +11,35 @@ import { StudentService } from './student.service';
 })
 export class SchoolClassService {
 
+  endpoint = 'http://localhost:8080/api/v1/';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
   classesChanged = new EventEmitter<SchoolClass[]>();
 
-  private classes: SchoolClass[] = [
-    new SchoolClass(1, '10d', [
-      this.studentService.getStudentById(1), this.studentService.getStudentById(2), this.studentService.getStudentById(3)
-    ], []),
-    new SchoolClass(2, '12e', [
-      this.studentService.getStudentById(4), this.studentService.getStudentById(5), this.studentService.getStudentById(6)
-    ], []),
-    new SchoolClass(3, '8a', [
-      this.studentService.getStudentById(7), this.studentService.getStudentById(8), this.studentService.getStudentById(9)
-    ], []),
-  ];
+  private classes: SchoolClass[] = [];
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private http: HttpClient) { }
 
-  getClasses() {
-    return this.classes.slice();
+  private extractData(res: Response) {
+    let body = res;
+    return body || {};
   }
 
-  getClassById(id: number) {
-    let tmp = this.getClasses().filter(cl => cl.id === id);
-    if (tmp.length > 0) {
-      return tmp[0];
-    }
+  getClasses(): Observable<any> {
+    return this.http.get(this.endpoint + 'classes').pipe(
+      map(this.extractData));
+  }
+
+  getClassById(id: number): Observable<any> {
+    // let tmp = this.getClasses().filter(cl => cl.id === id);
+    // if (tmp.length > 0) {
+    //   return tmp[0];
+    // }
+    return this.http.get(this.endpoint + 'classes/' + id).pipe(
+      map(this.extractData));
   }
 }

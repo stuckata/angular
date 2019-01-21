@@ -3,6 +3,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Class Name</th>
+      <th scope="col">Class Size</th>
       <th scope="col">
         <a class="text-dark" [routerLink]="['/class/new']" style="margin-right: 30px">Add Class</a>
       </th>
@@ -12,6 +13,7 @@
     <tr *ngFor="let class of classes">
       <th scope="row">{{ class.id }}</th>
       <td>{{ class.name }}</td>
+      <td>{{ class.students.length }}</td>
       <td>
         <a class="text-dark" [routerLink]="['/class']" (click)="onClassDetailsClick(class)" style="margin-right: 30px">Class
           details</a>
