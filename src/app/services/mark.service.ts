@@ -1,20 +1,43 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Mark } from '../marks/mark.model';
-import { SubjectService } from './subject.service';
-import { TeacherService } from './teacher.service';
-import { StudentService } from './student.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarkService {
 
-  private marks: Mark[] = [];
+  marksChanged = new EventEmitter<Mark[]>();
 
-  constructor(
-    private subjectService: SubjectService,
-    private teacherService: TeacherService,
-    private studentService: StudentService
-  ) { }
+  endpoint = 'http://localhost:8080/api/v1/';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
+  constructor(private http: HttpClient) { }
+
+  extractData(res: Response) {
+    let body = res;
+    return body || {};
+  }
+
+  getMarksByClassIdAndSubjectId(classId: number, subjectId: number): Observable<any> {
+    return this.http.get(this.endpoint + 'marks/' + classId + '/' + subjectId).pipe(
+      map(this.extractData));
+  }
+
+  getMarks(): Observable<any> {
+    return this.http.get(this.endpoint + 'marks').pipe(
+      map(this.extractData));
+  }
+
+  getMarkById(id: number): Observable<any> {
+    return this.http.get(this.endpoint + 'marks/' + id).pipe(
+      map(this.extractData));
+  }
 }

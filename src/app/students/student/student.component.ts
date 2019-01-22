@@ -20,15 +20,8 @@ export class StudentComponent implements OnInit {
     if (this.route.snapshot) {
       const id = +this.route.snapshot.params['id'];
       if (id > 0) {
-        let tmp: Student;
-        this.studentService.getStudentById(id).subscribe((data: {}) => {
-          console.log(data);
-        });
-        if (tmp) {
-          this.student = tmp;
-        }
+        this.studentService.getStudentById(id).subscribe((data: Student) => { this.student = data });
       }
     }
   }
-
 }

@@ -6,6 +6,8 @@ import { SchoolClassService } from 'src/app/services/school-class.service';
 import { Student } from 'src/app/students/student.model';
 import { Subject } from 'src/app/subjects/subject.model';
 import { SubjectService } from 'src/app/services/subject.service';
+import { Mark } from 'src/app/marks/mark.model';
+import { MarkService } from 'src/app/services/mark.service';
 
 @Component({
   selector: 'app-school-class',
@@ -16,17 +18,21 @@ export class SchoolClassComponent implements OnInit {
 
   @Input() schoolClass: SchoolClass;
   @Input() subject: Subject;
+  marks: Mark[];
 
   constructor(
     private route: ActivatedRoute,
     private schoolClassService: SchoolClassService,
     private router: Router,
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private markService: MarkService
   ) { }
 
   ngOnInit() {
     this.schoolClass = new SchoolClass(0, '', []);
     this.subject = new Subject(0, '');
+    this.marks = [];
+
     if (this.route.snapshot) {
       const classId: number = parseInt(this.route.snapshot.params['classId']);
       if (classId > 0) {
@@ -40,7 +46,15 @@ export class SchoolClassComponent implements OnInit {
           this.subject = tmpSubject;
         }
       }
+
+      if (classId > 0 && subjectId > 0) {
+        this.markService.getMarksByClassIdAndSubjectId(classId, subjectId).subscribe((data: Mark[]) => { this.marks = data });
+      }
     }
+  }
+
+  getMarksByStudentId(studentId: number) {
+    return this.marks.filter(mark => mark.student.id === studentId);
   }
 
   onStudentNameClick(student: Student) {
