@@ -15,6 +15,7 @@ export class TeacherComponent implements OnInit {
 
   @Input() teacher: Teacher;
   @Input() selectionSubjects: { subject: Subject, checked: boolean }[];
+  subjects: Subject[] = [];
 
   constructor(
     private router: Router,
@@ -24,6 +25,7 @@ export class TeacherComponent implements OnInit {
 
   ngOnInit() {
     this.selectionSubjects = [];
+    this.subjectService.getSubjects().subscribe((data: Subject[]) => this.subjects = data);
     let teacherSubjects: Subject[] = [];
 
     this.teacher = new Teacher(0, '', []);
@@ -61,11 +63,11 @@ export class TeacherComponent implements OnInit {
 
   checkSubjects(teacherSubjects: Subject[]): { subject: Subject, checked: boolean }[] {
     this.selectionSubjects = [];
-    let allSubjects = this.subjectService.getSubjects();
-    for (let i = 0; i < allSubjects.length; i++) {
-      let index = teacherSubjects.indexOf(allSubjects[i]);
+
+    for (let i = 0; i < this.subjects.length; i++) {
+      let index = teacherSubjects.indexOf(this.subjects[i]);
       let checked = index > -1;
-      this.selectionSubjects.push({ subject: allSubjects[i], checked: checked });
+      this.selectionSubjects.push({ subject: this.subjects[i], checked: checked });
     }
     return this.selectionSubjects;
   }

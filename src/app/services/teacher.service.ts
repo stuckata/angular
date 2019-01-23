@@ -11,11 +11,7 @@ export class TeacherService {
 
   teachersChanged = new EventEmitter<Teacher[]>();
 
-  private teachers: Teacher[] = [
-    new Teacher(1, 'Ivan Ivanov', [this.subjectSurvice.getSubjectById(1), this.subjectSurvice.getSubjectById(2)]),
-    new Teacher(2, 'John Doe', [this.subjectSurvice.getSubjectById(2)]),
-    new Teacher(3, 'Fido Mido', [this.subjectSurvice.getSubjectById(3)])
-  ];
+  private teachers: Teacher[] = [];
 
   constructor(private subjectSurvice: SubjectService) { }
 

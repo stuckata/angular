@@ -41,10 +41,7 @@ export class SchoolClassComponent implements OnInit {
 
       const subjectId = +this.route.snapshot.params['subjectId'];
       if (subjectId > 0) {
-        let tmpSubject = this.subjectService.getSubjectById(subjectId);
-        if (tmpSubject) {
-          this.subject = tmpSubject;
-        }
+        this.subjectService.getSubjectById(subjectId).subscribe((data: Subject) => { this.subject = data });
       }
 
       if (classId > 0 && subjectId > 0) {

@@ -11,13 +11,12 @@ import { Subject } from './subject.model';
 })
 export class SubjectsComponent implements OnInit {
 
-  subjects: Subject[];
+  subjects: Subject[] = [];
 
   constructor(private subjectService: SubjectService, private router: Router) { }
 
   ngOnInit() {
-    this.subjects = this.subjectService.getSubjects();
-    this.subjectService.subjectsChanged.subscribe((subjects: Subject[]) => this.subjects = subjects);
+    this.subjectService.getSubjects().subscribe((data: Subject[]) => this.subjects = data);
   }
 
   onRemoveClick(subject: Subject) {

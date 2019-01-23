@@ -20,10 +20,8 @@ export class SubjectComponent implements OnInit {
     if (this.route.snapshot) {
       const id = +this.route.snapshot.params['id'];
       if (id > 0) {
-        let tmp = this.subjectService.getSubjectById(id);
-        if (tmp) {
-          this.subject = tmp;
-        }
+        this.subjectService.getSubjectById(id).subscribe((data: Subject) => this.subject = data);
+
       }
     }
   }

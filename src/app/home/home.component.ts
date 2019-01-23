@@ -32,8 +32,7 @@ export class HomeComponent implements OnInit {
       this.classes = data;
     });
     this.schoolClassService.classesChanged.subscribe((classes: SchoolClass[]) => this.classes = classes);
-    this.subjects = this.subjectService.getSubjects();
-    this.subjectService.subjectsChanged.subscribe((subjects: Subject[]) => this.subjects = subjects);
+    this.subjectService.getSubjects().subscribe((data: Subject[]) => this.subjects = data);
   }
 
   onClassChange(id: number) {

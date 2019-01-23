@@ -11,7 +11,8 @@
     <tr *ngFor="let student of schoolClass.students">
       <th>{{ student.id }}</th>
       <td><a class="text-dark" [routerLink]="" (click)="onStudentNameClick(student)">{{ student.name }}</a></td>
-      <td *ngIf="hasClassAndSubject()"><span *ngFor="let mark of getMarksByStudentId(student.id)">{{ mark.value }}</span></td>
+      <td *ngIf="hasClassAndSubject()"><span *ngFor="let mark of getMarksByStudentId(student.id)">{{ mark.value
+          }}&nbsp;</span></td>
     </tr>
   </tbody>
 </table>

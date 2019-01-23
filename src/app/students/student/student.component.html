@@ -1,11 +1,19 @@
-<div class="card" style="width: 18rem; margin-bottom: 30px">
-  <img src="https://image.shutterstock.com/mosaic_250/4473031/518740741/stock-vector-default-avatar-profile-icon-grey-photo-placeholder-518740741.jpg"
-    class="card-img-top" alt="">
-  <div class="card-body">
-    <h5 class="card-title">Name: {{ student.name }}</h5>
-    <p class="card-text">Go to Markbook or choose to Edit the Student.</p>
-    <a href="#" class="btn btn-primary" style="margin-right: 10px">Go to Markbook</a>
-    <a href="#" class="btn btn-warning">Edit</a>
+<div class="row">
+  <div class="card" style="width: 18rem; margin: 30px">
+    <img src="https://image.shutterstock.com/mosaic_250/4473031/518740741/stock-vector-default-avatar-profile-icon-grey-photo-placeholder-518740741.jpg"
+      class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{ student.name }}</h5>
+      <p class="card-text">Some information about the student.</p>
+      <a href="#" class="btn btn-primary" style="margin-right: 10px">Go to Markbook</a>
+      <a href="#" class="btn btn-warning">Edit</a>
+    </div>
+  </div>
+  <div class="card" style="width: 36rem; margin: 30px">
+    <div class="card-body">
+      <h5 class="card-title">Subject.name -> comes here</h5>
+      <p class="card-text">Marks -> here.</p>
+    </div>
   </div>
 </div>
 <button class="btn btn-secondary btn-block" [routerLink]="['/classes']">Back to Classes</button>
