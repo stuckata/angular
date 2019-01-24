@@ -31,7 +31,7 @@ export class SubjectService {
       map(this.extractData));
   }
 
-  getSubjectById(id: number) {
+  getSubjectById(id: number): Observable<any> {
     return this.http.get(this.endpoint + 'subjects/' + id).pipe(
       map(this.extractData));
   }

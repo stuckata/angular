@@ -12,17 +12,16 @@ import { TeacherService } from '../services/teacher.service';
 })
 export class TeachersComponent implements OnInit {
 
-  teachers: Teacher[];
+  teachers: Teacher[] = [];
 
   constructor(private teachersService: TeacherService, private router: Router) { }
 
   ngOnInit() {
-    this.teachers = this.teachersService.getTeachers();
-    this.teachersService.teachersChanged.subscribe((teachers: Teacher[]) => this.teachers = teachers);
+    this.teachersService.getTeachers().subscribe((data: Teacher[]) => this.teachers = data);
   }
 
   onRemoveClick(teacher: Teacher) {
-    this.teachersService.removeTeacher(teacher);
+    // this.teachersService.removeTeacher(teacher);
   }
 
   onEditClick(teacher: Teacher) {

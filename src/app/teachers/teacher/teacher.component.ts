@@ -28,30 +28,26 @@ export class TeacherComponent implements OnInit {
     this.subjectService.getSubjects().subscribe((data: Subject[]) => this.subjects = data);
     let teacherSubjects: Subject[] = [];
 
-    this.teacher = new Teacher(0, '', []);
+    this.teacher = new Teacher(0, '');
     if (this.route.snapshot) {
       let id = +this.route.snapshot.params['id'];
       if (id > 0) {
-        let tmpTeacher = this.teacherService.getTeacherById(id);
-        if (tmpTeacher) {
-          this.teacher = tmpTeacher;
-          teacherSubjects = this.teacher.subjects;
-        }
+        this.teacherService.getTeacherById(id).subscribe((data: Teacher) => this.teacher = data);
       }
     }
     this.selectionSubjects = this.checkSubjects(teacherSubjects);
   }
 
-  onSaveClick() {
-    if (this.isEditMode()) {
-      this.teacherService.editTeacher(this.teacher);
-    } else {
-      let filtered = (this.selectionSubjects.filter(el => el.checked === true));
-      let selected = filtered.map(el => el.subject);
-      this.teacherService.addTeacher(this.teacher, selected);
-    }
-    this.router.navigate(['/teachers']);
-  }
+  // onSaveClick() {
+  //   if (this.isEditMode()) {
+  //     this.teacherService.editTeacher(this.teacher);
+  //   } else {
+  //     let filtered = (this.selectionSubjects.filter(el => el.checked === true));
+  //     let selected = filtered.map(el => el.subject);
+  //     this.teacherService.addTeacher(this.teacher, selected);
+  //   }
+  //   this.router.navigate(['/teachers']);
+  // }
 
   onCancelClick() {
     this.router.navigate(['/teachers']);

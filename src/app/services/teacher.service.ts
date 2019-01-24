@@ -1,4 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Teacher } from '../teachers/teacher.model';
 import { SubjectService } from './subject.service';
@@ -11,42 +14,34 @@ export class TeacherService {
 
   teachersChanged = new EventEmitter<Teacher[]>();
 
-  private teachers: Teacher[] = [];
+  endpoint = 'http://localhost:8080/api/v1/';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
-  constructor(private subjectSurvice: SubjectService) { }
+  constructor(private subjectSurvice: SubjectService, private http: HttpClient) { }
 
-  getTeachers() {
-    return this.teachers.slice();
+  extractData(res: Response) {
+    let body = res;
+    return body || {};
   }
 
-  addTeacher(teacher: Teacher, subjects: Subject[]) {
-    teacher.id = this.teachers.length + 1;
-    teacher = this.addSubjects(teacher, subjects);
-    this.teachers.push(teacher);
-    this.teachersChanged.emit(this.getTeachers());
+  getTeachers(): Observable<any> {
+    return this.http.get(this.endpoint + 'teachers').pipe(
+      map(this.extractData));
   }
 
-  editTeacher(teacher: Teacher) {
-    this.teachersChanged.emit(this.getTeachers());
+  getTeacherById(id: number): Observable<any> {
+    return this.http.get(this.endpoint + 'teachers/' + id).pipe(
+      map(this.extractData));
   }
 
-  getTeacherById(id: number) {
-    let tmp = this.getTeachers().filter(teacher => teacher.id === id);
-    if (tmp.length > 0) {
-      return tmp[0];
-    }
-  }
-
-  removeTeacher(teacher: Teacher) {
-    let index = this.getTeachers().indexOf(teacher);
-    this.teachers.splice(index, 1);
-    this.teachersChanged.emit(this.getTeachers());
-  }
-
-  addSubjects(teacher: Teacher, subjects: Subject[]) {
-    for (let i = 0; i < subjects.length; i++) {
-      teacher.subjects.push(subjects[i]);
-    }
-    return teacher;
-  }
+  // addSubjects(teacher: Teacher, subjects: Subject[]) {
+  //   for (let i = 0; i < subjects.length; i++) {
+  //     teacher.subjects.push(subjects[i]);
+  //   }
+  //   return teacher;
+  // }
 }

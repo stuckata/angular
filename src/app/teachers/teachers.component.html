@@ -3,7 +3,6 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Teacher</th>
-      <th scope="col">Subjects</th>
       <th scope="col">
         <a class="text-dark" [routerLink]="['/teacher/new']" style="margin-right: 30px">Add Teacher</a>
       </th>
@@ -13,7 +12,6 @@
     <tr *ngFor="let teacher of teachers">
       <th scope="row">{{ teacher.id }}</th>
       <td>{{ teacher.name }}</td>
-      <td>{{ subjectsToString(teacher.subjects) }}</td>
       <td>
         <a class="text-dark" [routerLink]="['/teacher']" (click)="onEditClick(teacher)" style="margin-right: 30px">Edit</a>
         <a class="text-dark" [routerLink]="['/teachers']" (click)="onRemoveClick(teacher)">Remove</a>
