@@ -57,6 +57,10 @@ export class TeacherComponent implements OnInit {
     return this.teacher.id !== 0;
   }
 
+  // TODO
+  // A new service should be added: class-subject-teacher
+  // This new service will keep the data needed to populate the teacher subjects 
+
   checkSubjects(teacherSubjects: Subject[]): { subject: Subject, checked: boolean }[] {
     this.selectionSubjects = [];
 
