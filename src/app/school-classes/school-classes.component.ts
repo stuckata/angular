@@ -17,7 +17,7 @@ export class SchoolClassesComponent implements OnInit {
 
   ngOnInit() {
     this.schoolClassService.getClasses().subscribe((data: SchoolClass[]) => { this.classes = data });
-    this.schoolClassService.classesChanged.subscribe((classes: SchoolClass[]) => this.classes = classes);
+    this.schoolClassService.getClasses().subscribe((data: SchoolClass[]) => this.classes = data);
   }
 
   onClassDetailsClick(schoolClass: SchoolClass) {

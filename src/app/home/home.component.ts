@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SchoolClass } from '../school-classes/school-class.model';
@@ -13,8 +13,8 @@ import { SubjectService } from '../services/subject.service';
 })
 export class HomeComponent implements OnInit {
 
-  classes: SchoolClass[];
-  subjects: Subject[];
+  classes: SchoolClass[] = [];
+  subjects: Subject[] = [];
   classId: number = 0;
   subjectId: number = 0;
   showWarning: boolean;
@@ -27,11 +27,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.showWarning = false;
-    this.classes = [];
-    this.schoolClassService.getClasses().subscribe((data: SchoolClass[]) => {
-      this.classes = data;
-    });
-    this.schoolClassService.classesChanged.subscribe((classes: SchoolClass[]) => this.classes = classes);
+    this.schoolClassService.getClasses().subscribe((data: SchoolClass[]) => this.classes = data);
     this.subjectService.getSubjects().subscribe((data: Subject[]) => this.subjects = data);
   }
 
