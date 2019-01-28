@@ -1,39 +1,27 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Subject } from '../subjects/subject.model';
+import { RestService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubjectService {
+export class SubjectService extends RestService {
 
-  subjectsChanged = new EventEmitter<Subject[]>();
+  private relativeUrl: string = 'subjects';
 
-  endpoint = 'http://localhost:8080/api/v1/';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  constructor(private http: HttpClient) { }
-
-  extractData(res: Response) {
-    let body = res;
-    return body || {};
+  constructor(http: HttpClient) {
+    super(http);
   }
 
   getSubjects(): Observable<any> {
-    return this.http.get(this.endpoint + 'subjects').pipe(
-      map(this.extractData));
+    return this.get(this.relativeUrl);
   }
 
   getSubjectById(id: number): Observable<any> {
-    return this.http.get(this.endpoint + 'subjects/' + id).pipe(
-      map(this.extractData));
+    return this.getById(this.relativeUrl, id);
   }
 
   addSubject(subject: Subject) {

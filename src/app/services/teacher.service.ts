@@ -1,41 +1,26 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
 import { Teacher } from '../teachers/teacher.model';
-import { SubjectService } from './subject.service';
-import { Subject } from '../subjects/subject.model';
+import { RestService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeacherService {
+export class TeacherService extends RestService {
 
-  teachersChanged = new EventEmitter<Teacher[]>();
+  private relativeUrl: string = 'teachers';
 
-  endpoint = 'http://localhost:8080/api/v1/';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  constructor(private subjectSurvice: SubjectService, private http: HttpClient) { }
-
-  extractData(res: Response) {
-    let body = res;
-    return body || {};
+  constructor(http: HttpClient) {
+    super(http);
   }
 
-  getTeachers(): Observable<any> {
-    return this.http.get(this.endpoint + 'teachers').pipe(
-      map(this.extractData));
+  getTeachers(): Observable<Teacher[]> {
+    return this.get(this.relativeUrl);
   }
 
-  getTeacherById(id: number): Observable<any> {
-    return this.http.get(this.endpoint + 'teachers/' + id).pipe(
-      map(this.extractData));
+  getTeacherById(id: number): Observable<Teacher> {
+    return this.getById(this.relativeUrl, id);
   }
 
   // addSubjects(teacher: Teacher, subjects: Subject[]) {
