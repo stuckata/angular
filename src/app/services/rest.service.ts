@@ -30,4 +30,8 @@ export abstract class RestService {
   protected getById(relativeUrl: string, id: number): Observable<any> {
     return this.http.get(this.baseUrl + relativeUrl + '/' + id).pipe(map(this.extractData));
   }
+
+  protected getByTwoDifferentIds(relativeUrl: string, id1: number, id2: number): Observable<any> {
+    return this.http.get(this.baseUrl + relativeUrl + '/' + id1 + '/' + id2).pipe(map(this.extractData));
+  }
 }

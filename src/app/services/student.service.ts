@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 import { RestService } from './rest.service';
 
 @Injectable({
@@ -8,6 +10,10 @@ import { RestService } from './rest.service';
 export class StudentService extends RestService {
 
   private relativeUrl: string = 'students';
+
+  constructor(http: HttpClient) {
+    super(http);
+  }
 
   getStudents(): Observable<any> {
     return this.get(this.relativeUrl);

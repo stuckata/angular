@@ -4,40 +4,28 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Mark } from '../marks/mark.model';
+import { RestService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MarkService {
+export class MarkService extends RestService {
 
-  marksChanged = new EventEmitter<Mark[]>();
+  private relativeUrl: string = 'marks';
 
-  endpoint = 'http://localhost:8080/api/v1/';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  constructor(private http: HttpClient) { }
-
-  extractData(res: Response) {
-    let body = res;
-    return body || {};
+  constructor(http: HttpClient) {
+    super(http);
   }
 
-  getMarksByClassIdAndSubjectId(classId: number, subjectId: number): Observable<any> {
-    return this.http.get(this.endpoint + 'marks/' + classId + '/' + subjectId).pipe(
-      map(this.extractData));
+  getMarksByClassIdAndSubjectId(classId: number, subjectId: number): Observable<Mark[]> {
+    return this.getByTwoDifferentIds(this.relativeUrl, classId, subjectId);
   }
 
-  getMarks(): Observable<any> {
-    return this.http.get(this.endpoint + 'marks').pipe(
-      map(this.extractData));
+  getMarks(): Observable<Mark[]> {
+    return this.get(this.relativeUrl);
   }
 
   getMarkById(id: number): Observable<any> {
-    return this.http.get(this.endpoint + 'marks/' + id).pipe(
-      map(this.extractData));
+    return this.getById(this.relativeUrl, id);
   }
 }
