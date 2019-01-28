@@ -1,7 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Mark } from '../marks/mark.model';
 import { RestService } from './rest.service';
@@ -25,7 +24,7 @@ export class MarkService extends RestService {
     return this.get(this.relativeUrl);
   }
 
-  getMarkById(id: number): Observable<any> {
+  getMarkById(id: number): Observable<Mark> {
     return this.getById(this.relativeUrl, id);
   }
 }
