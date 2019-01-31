@@ -16,19 +16,25 @@ export class ClassSubjectTeacherService extends RestService {
     super(http);
   }
 
-  getClassSubjectTeachers(): Observable<ClassSubjectTeacher[]> {
+  getAllClassSubjectTeachers(): Observable<ClassSubjectTeacher[]> {
     return this.get(this.relativeUrl);
   }
 
-  getClassSubjectTeacherByClassId(classId: number): Observable<ClassSubjectTeacher> {
+  getAllSubjectIdsByTeacherId(teacherId: number): Observable<number[]> {
+    return this.getById('subjects-by-teacher', teacherId);
+  }
+
+  getAllClassSubjectTeachersByClassId(classId: number): Observable<ClassSubjectTeacher[]> {
     return this.getById(this.relativeUrl + '-by-class', classId);
   }
 
-  getClassSubjectTeacherBySubjectId(subjectId: number): Observable<ClassSubjectTeacher> {
+  getAllClassSubjectTeachersBySubjectId(subjectId: number): Observable<ClassSubjectTeacher[]> {
     return this.getById(this.relativeUrl + '-by-subject', subjectId);
   }
 
-  getClassSubjectTeacherByTeacherId(teacherId: number): Observable<ClassSubjectTeacher> {
-    return this.getById(this.relativeUrl + '-by-teacher', teacherId);
+  getAllClassSubjectTeachersByTeacherId(teacherId: number): Observable<ClassSubjectTeacher[]> {
+    console.log('az beh tuka');
+    let res: Observable<ClassSubjectTeacher[]> = this.getById(this.relativeUrl + '-by-teacher', teacherId);
+    return res;
   }
 }
